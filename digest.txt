@@ -144,7 +144,7 @@ This is a Calculator what is a maximu for GI whale spend on game with worst luck
 | Battle Pass levl up  | {data["BP_LV_UP"]["spend"]:.2f} usd |
 | Refil Resin          | {data["resin_refill"]["spend"]:.2f} usd |
 | | |
-| Totalz                 | {data["total_spend"]:.2f} usd |
+| Total                | {data["total_spend"]:.2f} usd |
 """
 
 write_readme(markdown)
