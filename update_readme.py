@@ -1,7 +1,6 @@
 import whale_calculator
 import matplotlib.pyplot as plt
 
-
 SPEND_CHARD_NAME = "spend_chart.png"
 
 def generate_pie_chart(data):

@@ -1,5 +1,5 @@
 Directory structure:
-└── Wale Calculator/
+└── Whale_Calculator/
     ├── LICENSE
     ├── update_readme.py
     ├── whale_calculator.py
@@ -39,7 +39,6 @@ FILE: update_readme.py
 ================================================
 import whale_calculator
 import matplotlib.pyplot as plt
-
 
 SPEND_CHARD_NAME = "spend_chart.png"
 
@@ -310,9 +309,8 @@ name: Daily Whale Update
 
 on:
   schedule:
-    # Spouští se každý den v 00:00 UTC
     - cron: '0 0 * * *'
-  workflow_dispatch: # Umožňuje spustit aktualizaci i ručně tlačítkem
+  workflow_dispatch: 
 
 jobs:
   build:
