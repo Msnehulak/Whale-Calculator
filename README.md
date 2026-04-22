@@ -15,4 +15,4 @@ This is a Calculator what is a maximu for GI whale spend on game with worst luck
 | Battle Pass levl up  | 5654.83 usd |
 | Refil Resin          | 7979.59 usd |
 | | |
-| Totalz                 | 264768.64 usd |
+| Total                | 264768.64 usd |
