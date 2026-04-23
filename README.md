@@ -8,11 +8,13 @@ This is a Calculator what is a maximu for GI whale spend on game with worst luck
 ## Table Spend Distribution
 | Type | Spend (EUR) | Spend (USD) | Share |
 | :--- | :--- | :--- | :--- |
-| all C6 characters | 161469.58 EUR | 190002.21 USD | 71.8% |
-| all R5 weapons | 51260.18 EUR | 60318.16 USD | 22.8% |
-| Welkin Moon | 284.12 EUR | 334.33 USD | 0.1% |
-| Battle Pass | 407.51 EUR | 479.52 USD | 0.2% |
-| Battle Pass Level Up | 4805.64 EUR | 5654.83 USD | 2.1% |
-| Resin Refill | 6781.29 EUR | 7979.59 USD | 3.0% |
+| all C6 characters | 161938.88 EUR | 190002.21 USD | 67.2% |
+| all R5 weapons | 51409.17 EUR | 60318.16 USD | 21.3% |
+| Welkin Moon | 284.95 EUR | 334.33 USD | 0.1% |
+| Battle Pass | 408.69 EUR | 479.52 USD | 0.2% |
+| Battle Pass Level Up | 4819.61 EUR | 5654.83 USD | 2.0% |
+| Resin Refill | 21773.92 EUR | 25547.25 USD | 9.0% |
+| All skins | 348.08 EUR | 408.40 USD | 0.1% |
+
 | | | | |
-| **Total** | **225008.33 EUR** | **264768.64 USD** | **100%** |
+| **Total** | **240983.31 EUR** | **282744.70 USD** | **100%** |

@@ -21,7 +21,7 @@ def format_row(name, usd_value, total_usd):
     return f"| {name} | {eur_value:.2f} EUR | {usd_value:.2f} USD | {percent:.1f}% |"
 
 def generate_pie_chart(data):
-    categories = ['Characters', 'Weapons', 'Resin Refill', 'Welkin', 'BattlePass', 'BP Levels']
+    categories = ['Characters', 'Weapons', 'Resin Refill', 'Welkin', 'BattlePass', 'BP Levels', 'skins']
     values = [
         data["Characters"]["spend"],
         data["Weapons"]["spend"],
@@ -29,12 +29,13 @@ def generate_pie_chart(data):
         data["Welkin_Moon"]["spend"],
         data["BP"]["spend"],
         data["BP_LV_UP"]["spend"],
+        data["skin"]["spend"],
     ]
 
     total = sum(values)
-    legend_labels = [f'{l}: {v/total*100:1.1f}%' for l, v in zip(categories, values)]
-
-    colors = ['#ff9999','#66b3ff','#99ff99','#ffcc99','#c2c2f0','#ffb3e6']
+    legend_labels = [f'{l}: {v/total*100:1.1f}%' for l, v in zip(categories, values)] 
+                # char       # wnp        #resin      #welkin     # BP        # BP lvs      #skin    
+    colors = ['#ff9999',"#ffd966","#99f1ff","#99acff","#ffc965","#eeff6b","#e597ff"]
 
     fig, ax = plt.subplots(figsize=(14, 8), facecolor='none')
 
@@ -42,7 +43,7 @@ def generate_pie_chart(data):
         values, 
         colors=colors, 
         startangle=140, 
-        pctdistance=0.85,
+        pctdistance=0.95,
         labeldistance=1.1
     )
 
@@ -50,15 +51,17 @@ def generate_pie_chart(data):
         wedges, 
         legend_labels,
         title="Categories",
+        title_fontsize=21,
         loc="center left",
         bbox_to_anchor=(1, 0, 0.5, 1),
-        fontsize=12,
-        frameon=True,
+        
+        fontsize=19,
+        frameon=False,
     )
 
-    ax.set_title('Genshin Impact Whale Spend Distribution', pad=20, size=16, color='white')
+    ax.set_title('Genshin Impact Whale Spend Distribution', pad=15, size=24)
 
-    plt.savefig('spend_chart.png', transparent=True, bbox_inches='tight')
+    plt.savefig('spend_chart.png', bbox_inches='tight', transparent=False, facecolor="white")
     plt.close()
 
 def write_readme(markdown):
@@ -90,12 +93,14 @@ This is a Calculator what is a maximu for GI whale spend on game with worst luck
 ## Table Spend Distribution
 | Type | Spend (EUR) | Spend (USD) | Share |
 | :--- | :--- | :--- | :--- |
-{format_row("all C6 characters", data["Characters"]["spend"], data["total_spend"])}
-{format_row("all R5 weapons", data["Weapons"]["spend"], data["total_spend"])}
+{format_row("All C6 characters", data["Characters"]["spend"], data["total_spend"])}
+{format_row("All R5 weapons", data["Weapons"]["spend"], data["total_spend"])}
 {format_row("Welkin Moon", data["Welkin_Moon"]["spend"], data["total_spend"])}
 {format_row("Battle Pass", data["BP"]["spend"], data["total_spend"])}
 {format_row("Battle Pass Level Up", data["BP_LV_UP"]["spend"], data["total_spend"])}
 {format_row("Resin Refill", data["resin_refill"]["spend"], data["total_spend"])}
+{format_row("All skins", data["skin"]["spend"], data["total_spend"])}
+
 | | | | |
 | **Total** | **{data["total_spend"] * eur_rate:.2f} EUR** | **{data["total_spend"]:.2f} USD** | **100%** |
 """
