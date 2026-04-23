@@ -15,6 +15,5 @@ This is a Calculator what is a maximu for GI whale spend on game with worst luck
 | Battle Pass Level Up | 4819.61 EUR | 5654.83 USD | 2.0% |
 | Resin Refill | 21773.92 EUR | 25547.25 USD | 9.0% |
 | All skins | 348.08 EUR | 408.40 USD | 0.1% |
-
-| | | | |
+| |
 | **Total** | **240983.31 EUR** | **282744.70 USD** | **100%** |

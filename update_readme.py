@@ -100,8 +100,7 @@ This is a Calculator what is a maximu for GI whale spend on game with worst luck
 {format_row("Battle Pass Level Up", data["BP_LV_UP"]["spend"], data["total_spend"])}
 {format_row("Resin Refill", data["resin_refill"]["spend"], data["total_spend"])}
 {format_row("All skins", data["skin"]["spend"], data["total_spend"])}
-
-| | | | |
+| |
 | **Total** | **{data["total_spend"] * eur_rate:.2f} EUR** | **{data["total_spend"]:.2f} USD** | **100%** |
 """
 
