@@ -70,7 +70,6 @@ def write_readme(markdown):
 
 wc = whale_calculator.whalecalculator()
 data = wc.get_row_data()
-
 # float update
 for key, value in data.items():
     if isinstance(value, dict) and "spend" in value:

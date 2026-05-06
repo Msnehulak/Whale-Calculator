@@ -2,8 +2,13 @@ from datetime import date
 import requests
 import math
 
+AVRIGE_FOR_LIMITED_5 = 93
+USE_AIP = False
+
 class whalecalculator:
     def __init__(self):
+        self.char_limited5_list = ['aether', 'albedo', 'alhaitham', 'aloy', 'arataki itto', 'arlecchino', 'baizhu', 'chasca', 'chiori', 'citlali', 'clorinde', 'columbina', 'cyno', 'dehya', 'diluc', 'durin', 'emilie', 'escoffier', 'eula', 'flins', 'furina', 'ganyu', 'hu tao', 'ineffa', 'jean', 'kaedehara kazuha', 'kamisato ayaka', 'kamisato ayato', 'keqing', 'kinich', 'klee', 'lauma', 'linnea', 'lumine', 'lyney', 'manekin', 'manekina', 'mavuika', 'mona', 'mualani', 'nahida', 'navia', 'nefer', 'neuvillette', 'nilou', 'qiqi', 'raiden shogun', 'sangonomiya kokomi', 'shenhe', 'sigewinne', 'skirk', 'tartaglia', 'tighnari', 'varesa', 'varka', 'venti', 'wanderer', 'wriothesley', 'xianyun', 'xiao', 'xilonen', 'yae miko', 'yelan', 'yoimiya', 'yumemizuki mizuki', 'zhongli', 'zibai']
+        self.char_standard5_list = ["Jean", "Diluc", "Qiqi", "Mona", "Keqing", "Tighnari", "Dehya", "Mizuki"]
         self.prices = {
             "welkin": 4.99,
             "battle_pass": 9.99,
@@ -22,36 +27,37 @@ class whalecalculator:
             "pull": 160
         }
         self.total_spend = 0
-        
 
         self.release_date = date(2020, 9, 28)
         self.today_date = date.today()
         self.days_from_releas = self.today_date - self.release_date
         self.days_from_releas = self.days_from_releas.days
-        self.versin_released = self.days_from_releas // (7 * 6) 
+        self.version_released = self.days_from_releas // (7 * 6) 
 
         self.characters()
         self.weapons()
         self.welkin_moon()
         self.battle_pass()
         self.battle_pass_level_up()
-        self.daly_resin_refill()
+        self.daily_resin_refill()
         self.skins()
 
     def characters(self):
-        self.char_standard5_list = ["Jean", "Diluc", "Qiqi", "Mona", "Keqing", "Tighnari", "Dehya", "Mizuki"]
+        
         self.char_standard5_count = len(self.char_standard5_list) 
         self.char_limited5char_list = self.get_limited_character_count()
         self.char_limited5_count = len(self.char_limited5char_list)
 
-        self.char_pulls_one_copy = 180
+        self.char_pulls_one_copy = AVRIGE_FOR_LIMITED_5
         self.char_pulls_C6 = self.char_pulls_one_copy * 7
         self.char_total_pulls = self.char_pulls_C6 * self.char_limited5_count
         self.char_total_primo = self.char_total_pulls * self.primo["pull"]
         self.char_spend = self.primo_to_usd(self.char_total_primo)
 
         self.total_spend += self.char_spend
-    
+   
+           
+
     def weapons(self):
         self.wpn_count = self.char_limited5_count
         self.wpn_pulls_one_copy = 80
@@ -69,7 +75,7 @@ class whalecalculator:
         self.total_spend += self.welkin_moon_spend
 
     def battle_pass(self):
-        self.BP_owned = self.versin_released
+        self.BP_owned = self.version_released
         self.BP_spend = self.BP_owned * self.prices["battle_pass"]
         
         self.total_spend += self.BP_spend
@@ -82,7 +88,7 @@ class whalecalculator:
 
         self.total_spend += self.BP_LV_UP_spend 
 
-    def daly_resin_refill(self):
+    def daily_resin_refill(self):
         self.resin_refill_dayli_refil = sum(self.primo["refil_resin"])
         self.resin_refil_spend_primo = self.resin_refill_dayli_refil * self.days_from_releas
         self.resin_refil_spend = self.primo_to_usd(self.resin_refil_spend_primo)
@@ -114,15 +120,19 @@ class whalecalculator:
 
     def get_limited_character_count(self):
             # requests
-        url = "https://genshin-db-api.vercel.app/api/characters?query=5&matchCategories=true"
-        response = requests.get(url)
+        if USE_AIP:
+            url = "https://genshin-db-api.vercel.app/api/characters?query=5&matchCategories=true"
+            response = requests.get(url)
         
-        if response.status_code == 200:
-            characters = list(response.json())
+
+            if response.status_code == 200:
+                characters = list(response.json())
+            else:
+                print("error, API don't work, using hard code list")
+                characters = self.char_standard5_list
         else:
-            print("error, API don't work, using hard code list")
-            characters = ['Aether', 'Albedo', 'Alhaitham', 'Aloy', 'Arataki Itto', 'Arlecchino', 'Baizhu', 'Chasca', 'Chiori', 'Citlali', 'Clorinde', 'Columbina', 'Cyno', 'Dehya', 'Diluc', 'Durin', 'Emilie', 'Escoffier', 'Eula', 'Flins', 'Furina', 'Ganyu', 'Hu Tao', 'Ineffa', 'Jean', 'Kaedehara Kazuha', 'Kamisato Ayaka', 'Kamisato Ayato', 'Keqing', 'Kinich', 'Klee', 'Lauma', 'Linnea', 'Lumine', 'Lyney', 'Manekin', 'Manekina', 'Mavuika', 'Mona', 'Mualani', 'Nahida', 'Navia', 'Nefer', 'Neuvillette', 'Nilou', 'Qiqi', 'Raiden Shogun', 'Sangonomiya Kokomi', 'Shenhe', 'Sigewinne', 'Skirk', 'Tartaglia', 'Tighnari', 'Varesa', 'Varka', 'Venti', 'Wanderer', 'Wriothesley', 'Xianyun', 'Xiao', 'Xilonen', 'Yae Miko', 'Yelan', 'Yoimiya', 'Yumemizuki Mizuki', 'Zhongli', 'Zibai']
-            
+            characters = self.char_limited5_list
+
             # Filter standard 5*
         limited5char = []
         for char in characters:
